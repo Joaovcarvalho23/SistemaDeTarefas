@@ -26,7 +26,7 @@ namespace SistemaDeTarefas.Repositorios
 
         public async Task<UsuarioModel> Adicionar(UsuarioModel usuario)
         {
-            _dbContext.Usuarios.Add(usuario);
+            await _dbContext.Usuarios.AddAsync(usuario);
             _dbContext.SaveChanges();
             return usuario;
         }
