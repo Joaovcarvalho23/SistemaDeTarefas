@@ -24,6 +24,7 @@ namespace SistemaDeTarefas
                 );
 
             builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();//estamos configurando a injeção de dependência. Toda vez que alguém chamar a interface IUsuarioRepositorio, ele vai saber que a classe que ele vai resolver instanciar é a UsuarioRepositorio.
+            builder.Services.AddScoped<ITarefaRepositorio, TarefaRepositorio>();//toda vez que for chamado no construtor o ITarefaRepositorio, ele vai instanciar essa TarefaRepositorio
 
             var app = builder.Build();
 
