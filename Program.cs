@@ -18,7 +18,8 @@ namespace SistemaDeTarefas
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddEntityFrameworkSqlServer().AddDbContext<SistemaDeTarefasDBContext>(
+            builder.Services.AddEntityFrameworkSqlServer()
+                .AddDbContext<SistemaDeTarefasDBContext>(
                     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DataBase"))
                 );
 
