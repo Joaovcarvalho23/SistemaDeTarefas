@@ -12,6 +12,10 @@ namespace SistemaDeTarefas.Data.Map
             builder.Property(x => x.Nome).IsRequired().HasMaxLength(255);
             builder.Property(x => x.Descricao).HasMaxLength(1000);
             builder.Property(x => x.Status).IsRequired();
+
+            //fazendo o mapeamento da nossa nova propriedade
+            builder.Property(x => x.UsuarioId);
+            builder.HasOne(x => x.Usuario);//aqui ocorre o relacionamento. Passamos que existe um Usuario vinculado a ele
         }
     }
 }
