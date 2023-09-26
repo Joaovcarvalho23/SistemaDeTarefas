@@ -8,10 +8,12 @@ namespace SistemaDeTarefas.Repositorios
     public class UsuarioRepositorio : IUsuarioRepositorio
     {
         private readonly SistemaDeTarefasDBContext _dbContext; //atributo
+
         public UsuarioRepositorio(SistemaDeTarefasDBContext sistemaDeTarefasDBContext)// constrututor (atalho: ctor)
         {
             _dbContext = sistemaDeTarefasDBContext;
         }
+
         public async Task<UsuarioModel> BuscarPorId(int id)
         {
             return await _dbContext.Usuarios.FirstOrDefaultAsync(x => x.Id == id);
@@ -35,11 +37,10 @@ namespace SistemaDeTarefas.Repositorios
         public async Task<UsuarioModel> Atualizar(UsuarioModel usuario, int id)
         {
             UsuarioModel usuarioPorId = await BuscarPorId(id);
-            
-            if(usuarioPorId == null)
-            {
+
+            if (usuarioPorId == null)
                 throw new Exception($"O usuário com o Id {id} não foi encontrado no banco de dados.");
-            }
+            
 
             usuarioPorId.Nome = usuario.Nome;
             usuarioPorId.Email = usuario.Email;
@@ -47,7 +48,7 @@ namespace SistemaDeTarefas.Repositorios
             _dbContext.Usuarios.Update(usuarioPorId);
             await _dbContext.SaveChangesAsync();
 
-            return usuario;
+            return usuarioPorId;
         }
 
 
